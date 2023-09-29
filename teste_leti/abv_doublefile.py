@@ -94,13 +94,15 @@ with open("sequence.gbc.xml", "r") as file:
         dict_extra['Pubmed accession number'].append(temp_info['Pubmed accession number'])
 
 #convertendo o dicionário em um DataFrame
+
 dict_df = pd.DataFrame(dict_info)
 extra_df = pd.DataFrame(dict_extra)
+df_explode = extra_df.explode(column = 'Pubmed accession number')
 
 #salvando o DataFrame em um arquivo CSV e excel
 dict_df.to_csv('collected_data.csv', index = False)
-extra_df.to_csv('pubmed_accessions.csv', index = False)
-#dict_df.to_excel('collected_data.xlsx', index = False)
+df_explode.to_csv('pubmed_accessions.csv', index = False)
+dict_df.to_excel('collected_data.xlsx', index = False)
 
 dados = pd.read_csv('collected_data.csv')
 more = pd.read_csv('pubmed_accessions.csv')
