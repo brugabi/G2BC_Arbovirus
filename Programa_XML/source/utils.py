@@ -19,3 +19,18 @@ def lista_de_arquivos(path):
             file_list.append(file)
     
     return file_list
+
+def Setup_filesystem():
+    """
+    Cria uma estrutura de diretórios para armazenar dados.
+    Args:
+        Não tem argumentos.
+    Raises:
+        Exception: Se um erro ocorrer ao criar um diretório.
+    """
+    filesystem = ['data/raw','data/processed']
+    for file in filesystem:
+        try:
+            os.makedirs(file)
+        except FileExistsError :
+            print("Diretório {} já existe!".format(file))
